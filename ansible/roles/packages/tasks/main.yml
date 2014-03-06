@@ -6,3 +6,5 @@
     - git
     - tig
     - subversion
+    - vim
+    - tmux
