@@ -3,6 +3,9 @@
   apt: name={{ item }} state=installed
   with_items:
     - build-essential
+    - libxslt-dev
+    - libxml2-dev
+    - libsqlite3-dev
     - git
     - tig
     - subversion
