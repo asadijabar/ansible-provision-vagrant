@@ -3,7 +3,7 @@
   apt: name={{ item }} state=installed
   with_items:
     - build-essential
-    - libxslt-dev
+    - libxslt1-dev
     - libxml2-dev
     - libsqlite3-dev
     - tree
