@@ -6,6 +6,7 @@
     - libxslt-dev
     - libxml2-dev
     - libsqlite3-dev
+    - tree
     - git
     - tig
     - subversion
