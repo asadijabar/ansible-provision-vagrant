@@ -1,16 +1,16 @@
 # Provision your favorite development environment with Ansible
 
-This playbook and provision.sh allows you to provision your favorite development environment even if you are on Windows or behind proxy.
+This vagrant file, provision.sh, and playbook allows you to provision your favorite development environment even if you are on Windows or behind proxy.
 
 
 ## Requirement
 
-This playbook expects the following tools are already installed.
+This vagrant file, provision.sh, and playbook expects the following tools are already installed.
 
 - [Oracle VM VirtualBox 4.3.6](https://www.virtualbox.org/)
 - [Vagrant 1.4.1](http://www.vagrantup.com/)
 
-Some git client is also needed. If you are on Windows, the following tool is preferred.
+Git client is also needed. If you are on Windows, msysgit is preferred.
 
 - [Git for Windows 1.9.0](http://msysgit.github.io/)
 
@@ -22,19 +22,19 @@ Create and move to directory where you want to create the virtual machine, then 
 ```
 $ mkdir -p ~/vagrants/
 $ cd ~/vagrants/
-$ git clone https://github.com/garbagetown/template-vagrant.git
+$ git clone https://github.com/garbagetown/ansible-provision-vagrant.git
 ```
 
 If you are behind the proxy, configure your proxy host and port like below.
 
 ```
-$ echo 'http_proxy: http://your.proxy.host:9999/' >> template-vagrant/ansible/roles/proxy/vars/main.yml
+$ echo 'http_proxy: http://your.proxy.host:9999/' >> ansible-provision-vagrant/ansible/roles/proxy/vars/main.yml
 ```
 
-Finally, dive into the directory and boot the virtual machine. *THIS PROCESS WILL TAKE A SEVERAL MINUTES*, so please wait patiently.
+Finally, dive into the directory and boot the virtual machine. **THIS PROCESS WILL TAKE A SEVERAL MINUTES**, please wait patiently.
 
 ```
-$ cd template-vagrant
+$ cd ansible-provision-vagrant
 $ vagrant up
 bash-3.1$ vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
@@ -91,7 +91,7 @@ Last login: Fri Sep 14 06:23:18 2012 from 10.0.2.2
 $
 ```
 
-Or using general ssh command to localhost with specifying the user name and port number which vagrant forwards to 22.
+Or using general ssh command to localhost with specifying the user name and port number which vagrant forwards.
 
 ```
 $ ssh vagrant@127.0.0.1 -p 2222
@@ -110,7 +110,7 @@ Last login: Thu Mar  6 03:00:49 2014 from 10.0.2.2
 $
 ```
 
-The password of vagrant is `vagrant`, as you know.
+The password of vagrant is `vagrant`, as you know ;-)
 
 
 ## Provisioned environment
@@ -128,6 +128,6 @@ This vagrant file, provision.sh, and playbook provisions the following environme
   - zsh
     - using oh-my-zsh and 'ys' theme
   - ruby 2.1.0
-    - using rbenv
+    - using rbenv system widely
 
-And, of course Ansible is installed, too!
+Of course Python and Ansible are installed, too!
