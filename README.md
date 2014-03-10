@@ -90,15 +90,11 @@ Last login: Fri Sep 14 06:23:18 2012 from 10.0.2.2
 $
 ```
 
-Or using general ssh command to localhost with specifying the user name and port number which vagrant forwards.
+Or using general ssh command to private network address which defined in Vagrantfile.
 
 ```
-$ ssh vagrant@127.0.0.1 -p 2222
-The authenticity of host '[127.0.0.1]:2222 ([127.0.0.1]:2222)' can't be established.
-RSA key fingerprint is 50:db:75:ba:11:2f:43:c9:ab:14:40:6d:7f:a1:ee:e3.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[127.0.0.1]:2222' (RSA) to the list of known hosts.
-vagrant@127.0.0.1's password:
+$ ssh vagrant@192.168.33.10
+vagrant@192.168.33.10's password:
 Welcome to Ubuntu 12.04 LTS (GNU/Linux 3.2.0-23-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com/
