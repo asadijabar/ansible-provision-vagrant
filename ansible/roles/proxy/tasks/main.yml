@@ -1,12 +1,15 @@
 ---
 - name: set http_proxy
+  sudo: yes
   lineinfile: dest=/etc/environment regexp='^http_proxy' line='http_proxy="{{ http_proxy }}"'
   when: http_proxy is defined
 
 - name: set https_proxy
+  sudo: yes
   lineinfile: dest=/etc/environment regexp='^https_proxy' line='https_proxy="{{ http_proxy }}"'
   when: http_proxy is defined
 
 - name: keep proxy setting when using sudo
+  sudo: yes
   lineinfile: dest=/etc/sudoers regexp='http_proxy' insertafter='^Defaults' line='Defaults        env_keep="http_proxy https_proxy"'
   when: http_proxy is defined

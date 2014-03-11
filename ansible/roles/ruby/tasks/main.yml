@@ -1,51 +1,41 @@
 ---
 - name: update rbenv repo
-  git: repo=git://github.com/sstephenson/rbenv.git dest={{ rbenv_root }} version=v0.4.0
-
-- name: add rbenv to path
-  file: path=/usr/local/bin/rbenv src={{ rbenv_root }}/bin/rbenv state=link
+  git: repo=git://github.com/sstephenson/rbenv.git dest={{ rbenv_root }}
 
 - name: set environment variable to .zshrc
-  lineinfile: dest=/home/vagrant/.zshrc regexp="RBENV_ROOT" line='export RBENV_ROOT="{{ rbenv_root }}"'
+  lineinfile: dest=~/.zshrc regexp="export RBENV_ROOT" line='export RBENV_ROOT="{{ rbenv_root }}"'
+
+- name: add the environment variable to path
+  lineinfile: dest=~/.zshrc regexp="RBENV_ROOT/bin" line='export PATH="$RBENV_ROOT/bin:$PATH"'
 
 - name: add rbenv initialization to .zshrc
-  lineinfile: dest=/home/vagrant/.zshrc regexp="$(rbenv init -)" line='eval "$(rbenv init -)"'
-
-- name: keep rbenv setting when using sudo
-  lineinfile: dest=/etc/sudoers regexp='RBENV_ROOT' insertafter='^Defaults' line='Defaults        env_keep+="RBENV_ROOT"'
-
-- name: add rbenv to secure_path
-  lineinfile: dest=/etc/sudoers regexp='$RBENV_ROOT' insertafter='^Defaults' line='Defaults        secure_path+="$RBENV_ROOT/shims:$RBENV_ROOT/bin"'
+  lineinfile: dest=~/.zshrc regexp="eval" line='eval "$(rbenv init -)"'
 
 - name: check ruby-build installed
   command: test -x {{ rbenv_root }}/plugins/ruby-build
   register: rbuild_present
   ignore_errors: yes
 
-- name: create plugins directory
-  command: mkdir {{ rbenv_root }}/plugins
-  when: rbuild_present|failed
-
 - name: clone ruby-build repo
   git: repo=git://github.com/sstephenson/ruby-build.git dest={{ rbenv_root }}/plugins/ruby-build
   when: rbuild_present|failed
 
 - name: check ruby {{ ruby_version }} installed
-  shell: RBENV_ROOT={{ rbenv_root }} rbenv versions | grep {{ ruby_version }}
+  shell: "{{ rbenv_root }}/bin/rbenv versions | grep {{ ruby_version }}"
   register: ruby_installed
   ignore_errors: yes
 
 - name: install ruby {{ ruby_version }}
-  shell: RBENV_ROOT={{ rbenv_root }} rbenv install {{ ruby_version }}
+  shell: "{{ rbenv_root }}/bin/rbenv install {{ ruby_version }}"
   when: ruby_installed|failed
 
 - name: set global ruby {{ ruby_version }}
-  shell: RBENV_ROOT={{ rbenv_root }} rbenv global {{ ruby_version }}
+  shell: "{{ rbenv_root }}/bin/rbenv global {{ ruby_version }}"
   when: ruby_installed|failed
 
 - name: rehash
-  shell: RBENV_ROOT={{ rbenv_root }} rbenv rehash
+  shell: "{{ rbenv_root }}/bin/rbenv rehash"
   when: ruby_installed|failed
 
 - name: set gemrc
-  copy: src=gemrc dest=/root/.gemrc owner=root group=root mode=0644
+  copy: src=gemrc dest=~/.gemrc

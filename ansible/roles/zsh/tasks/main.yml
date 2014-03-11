@@ -1,19 +1,21 @@
 ---
 - name: install zsh
+  sudo: yes
   apt: pkg=zsh state=installed
 
 - name: change login shell to zsh
+  sudo: yes
   command: usermod -s /usr/bin/zsh vagrant
 
 - name: install oh-my-zsh
-  git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+  git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh
 
-- name: change owner of .oh-my-zsh
-  file: dest=/home/vagrant/.oh-my-zsh owner=vagrant group=vagrant recurse=yes
+# - name: change owner of .oh-my-zsh
+#   file: dest=/home/vagrant/.oh-my-zsh owner=vagrant group=vagrant recurse=yes
 
 - name: copy zshrc
-  copy: src=/home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template dest=/home/vagrant/.zshrc
-        owner=vagrant group=vagrant mode=0644
+  copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc
+        # owner=vagrant group=vagrant mode=0644
 
 - name: set ZSH_THEME to ys
-  lineinfile: dest=/home/vagrant/.zshrc regexp="^ZSH_THEME" line='ZSH_THEME="ys"'
+  lineinfile: dest=~/.zshrc regexp="^ZSH_THEME" line='ZSH_THEME="ys"'
