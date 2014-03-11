@@ -122,7 +122,7 @@ This vagrant file, provision.sh, and playbook provisions the following environme
   - openjdk 7
   - zsh
     - using oh-my-zsh and 'ys' theme
-  - ruby 2.1.0
-    - using rbenv system widely
+  - ruby 2.0.0-p451
+    - using rbenv vagrant locally
 
 Of course Python and Ansible are installed, too!
