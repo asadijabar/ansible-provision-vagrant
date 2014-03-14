@@ -8,6 +8,7 @@
     - libxml2-dev
     - libsqlite3-dev
     - tree
+    - unzip
     - git
     - tig
     - subversion
