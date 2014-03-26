@@ -1,0 +1,14 @@
+---
+- name: install language-pack
+  sudo: yes
+  apt: name={{ item }} state=installed
+  with_items:
+    - language-pack-ja
+
+- name: remove the LC_ALL setting
+  sudo: yes
+  command: sed -i -e "/^LC_ALL/d" /etc/default/locale
+
+- name: update default locale
+  sudo: yes
+  command: update-locale LANG=ja_JP.UTF-8
