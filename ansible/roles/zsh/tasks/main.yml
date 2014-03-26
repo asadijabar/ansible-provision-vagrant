@@ -10,12 +10,8 @@
 - name: install oh-my-zsh
   git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh
 
-# - name: change owner of .oh-my-zsh
-#   file: dest=/home/vagrant/.oh-my-zsh owner=vagrant group=vagrant recurse=yes
-
 - name: copy zshrc
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc
-        # owner=vagrant group=vagrant mode=0644
 
 - name: set ZSH_THEME to ys
   lineinfile: dest=~/.zshrc regexp="^ZSH_THEME" line='ZSH_THEME="ys"'
