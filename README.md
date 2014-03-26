@@ -113,17 +113,11 @@ The password of vagrant is `vagrant`, as you know ;-)
 This vagrant file, provision.sh, and playbook provisions the following environment.
 
 - Ubuntu 12.04.1 LTS x86_64
-  - build-essential
   - zsh
     - using oh-my-zsh and 'ys' theme
   - tmux
   - vim
   - git
   - tig
-  - svn
-  - openjdk 7
-  - ruby 2.0.0-p451
-    - using rbenv vagrant locally
-  - node.js
 
 Of course Python and Ansible are installed, too!
