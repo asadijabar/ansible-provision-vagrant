@@ -122,8 +122,5 @@ This vagrant file, provision.sh, and playbook provisions the following environme
   - tig
   - svn
   - openjdk 7
-  - ruby 2.0.0-p451
-    - using rbenv vagrant locally
-  - node.js
 
 Of course Python and Ansible are installed, too!
