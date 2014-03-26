@@ -4,9 +4,6 @@
   apt: name={{ item }} state=installed
   with_items:
     - build-essential
-    - libxslt1-dev
-    - libxml2-dev
-    - libsqlite3-dev
     - tree
     - unzip
     - git
@@ -15,4 +12,3 @@
     - vim
     - tmux
     - openjdk-7-jdk
-    - nodejs
