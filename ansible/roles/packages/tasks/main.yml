@@ -9,8 +9,6 @@
     - libsqlite3-dev
     - tree
     - unzip
-    - git
-    - tig
     - subversion
     - vim
     - tmux
