@@ -3,7 +3,5 @@
   sudo: yes
   apt: name={{ item }} state=installed
   with_items:
-    - git
-    - tig
     - vim
     - tmux
