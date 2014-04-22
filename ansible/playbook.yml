@@ -6,5 +6,6 @@
     - timezone
     - proxy
     - packages
+    - git
     - zsh
 

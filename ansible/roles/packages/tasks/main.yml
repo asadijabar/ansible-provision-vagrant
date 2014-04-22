@@ -6,8 +6,6 @@
     - build-essential
     - tree
     - unzip
-    - git
-    - tig
     - subversion
     - vim
     - tmux
